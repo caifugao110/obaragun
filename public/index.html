@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="小原焊枪选型数据库登录页面">
+    <title>登录页 - 小原焊枪选型数据库</title>
+    <link rel="icon" href="icon/Obara_logo.jpg" type="image/x-icon"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* 自定义样式 */
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #666;
+            --border-radius: 10px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color) !important;
+            transition: var(--transition);
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .splash-container {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 20px;
+        }
+        
+        .splash {
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .splash-head {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .splash-subhead {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .login-section {
+            padding: 100px 20px;
+            background-color: var(--secondary-color);
+        }
+        
+        .content-head {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .login-form {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .login-form:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .form-control {
+            transition: var(--transition);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        .login-button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 8px;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 20px;
+            border: none;
+        }
+        
+        .login-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .info-section {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: 100%;
+        }
+        
+        .info-section h4 {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info {
+            line-height: 1.8;
+            color: var(--light-text);
+        }
+        
+        .footer {
+            background-color: var(--text-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out 0.3s both;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .splash-head {
+                font-size: 2rem;
+            }
+            
+            .splash-subhead {
+                font-size: 1rem;
+            }
+            
+            .content-head {
+                font-size: 1.5rem;
+            }
+            
+            .login-form {
+                padding: 25px;
+            }
+            
+            .info-section {
+                padding: 20px;
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .splash-container {
+                padding: 80px 15px 15px;
+            }
+            
+            .splash-head {
+                font-size: 1.8rem;
+            }
+            
+            .login-section {
+                padding: 80px 15px;
+            }
+            
+            .login-form {
+                padding: 20px;
+            }
+            
+            .form-control {
+                padding: 10px;
+            }
+            
+            .login-button {
+                padding: 10px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top header">
+    <div class="container">
+        <a class="navbar-brand" href="http://www.obara.com.cn/">
+            <i class="fas fa-industry"></i> 小原（中国）官网
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#login">客户登录</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">焊枪分类</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">焊接原理</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 欢迎内容 -->
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">小原焊枪选型数据库</h1>
+        <p class="splash-subhead">
+            以客户为中心  关怀员工  鼓励创新  纳新去旧<br/>
+            <span style="font-size: 0.9rem;">Be customer-oriented care employees encourage innovations take in the fresh</span>
+        </p>
+        <p>
+            <a href="#login" class="btn btn-primary">立即开始</a>
+        </p>
+    </div>
+</div>
+
+<!-- 登录界面 -->
+<section class="login-section" id="login">
+    <div class="container">
+        <h2 class="content-head">与世界汽车工业共成长 | Develop with global automobile industry together</h2>
+
+        <div class="row">
+            <div class="col-lg-5 col-md-6">
+                <form class="login-form" id="loginForm" action="pages/obaragun.html" method="get">
+                    <h3 class="mb-4" style="color: var(--primary-color); font-weight: bold;">
+                        <i class="fas fa-user-lock"></i> 用户登录 | User Login
+                    </h3>
+                    
+                    <div class="mb-4">
+                        <label for="username" class="form-label">
+                            <i class="fas fa-user"></i> 用户名 | Username
+                        </label>
+                        <input id="username" type="text" class="form-control" placeholder="请输入用户名" required>
+                        <div class="error-message" id="usernameError">请输入用户名</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock"></i> 密码 | Password
+                        </label>
+                        <input id="password" type="password" class="form-control" placeholder="请输入密码" required>
+                        <div class="error-message" id="passwordError">请输入密码</div>
+                    </div>
+
+                    <button type="submit" class="login-button">
+                        <i class="fas fa-sign-in-alt"></i> 登录 | Login
+                    </button>
+                </form>
+            </div>
+
+            <div class="col-lg-7 col-md-6">
+                <div class="info-section fade-in">
+                    <h4>
+                        <i class="fas fa-question-circle"></i> 如何获得用户名 | How to get Username
+                    </h4>
+                    <p class="contact-info">
+                        小原焊枪选型数据库用户名及密码由小原（南京）机电有限公司营业技术部门统一分发，焊枪图片及图纸模型数据为我公司技术机密，除用作产品选型作用外禁作它用。
+                        <br><br>
+                        The Username and Password of OBARA Welding Gun Selection Database are uniformly distributed by the business and technical department of OBARA (Nanjing) Mechanical and Electrical Co., Ltd. The pictures and drawings of welding Gun are confidential for our company. It is forbidden to use them for other purposes except for product selection.
+                    </p>
+
+                    <h4 class="mt-5">
+                        <i class="fas fa-envelope"></i> 联系我们 | Contact Us
+                    </h4>
+                    <p class="contact-info">
+                        <i class="fas fa-building"></i> 小原（南京）机电有限公司 &nbsp;
+                        <span style="font-size: 0.9rem;">OBARA (NANJING) MACHINERY & ELECTRIC CO.,LTD.</span><br>
+                        <i class="fas fa-map-marker-alt"></i> 地址：
+                        <a href="https://map.baidu.com/poi/%E5%B0%8F%E5%8E%9F(%E5%8D%97%E4%BA%AC)%E6%9C%BA%E7%94%B5%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/@13227747.328966942,3724848.5722314045,13.46z?uid=1bf85b25733fe4a4a1a9346b&primaryUid=18003560318424317951&ugc_type=3&ugc_ver=1&device_ratio=1&compat=1&querytype=detailConInfo&da_src=shareurl" style="text-decoration:none" target="_blank">中国·南京江宁经济技术开发区仁杰路28号</a> &nbsp;
+                        <span style="font-size: 0.9rem;">No.28,Renjie Road,Jiangning District,Nanjing China</span><br>
+                        <i class="fas fa-phone"></i> 营业直线：(025)52106195 &nbsp;
+                        <span style="font-size: 0.9rem;">Sales Department: (025)52106195</span><br>
+                        <i class="fas fa-envelope"></i> 邮箱：
+                        <a href="mailto:gaoj@obara.com.cn?subject=邮件主题&body=邮件内容" rel="nofollow" style="text-decoration:none">gaoj@obara.com.cn</a> &nbsp;
+                        <span style="font-size: 0.9rem;">Email:gaoj@obara.com.cn</span><br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="mb-0">版权所有 © 1994-2026 小原（南京）机电有限公司</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 防止XSS攻击的辅助函数
+    function sanitizeInput(input) {
+        return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+    
+    // 表单验证
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var isValid = true;
+        
+        // 验证用户名
+        if (!username.trim()) {
+            document.getElementById('usernameError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对用户名进行安全处理
+            document.getElementById('username').value = sanitizeInput(username);
+            document.getElementById('usernameError').style.display = 'none';
+        }
+        
+        // 验证密码
+        if (!password.trim()) {
+            document.getElementById('passwordError').style.display = 'block';
+            isValid = false;
+        } else {
+            document.getElementById('passwordError').style.display = 'none';
+        }
+        
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+    
+    // 输入框焦点事件
+    document.getElementById('username').addEventListener('focus', function() {
+        document.getElementById('usernameError').style.display = 'none';
+    });
+    
+    document.getElementById('password').addEventListener('focus', function() {
+        document.getElementById('passwordError').style.display = 'none';
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>小原焊枪选型数据库 - 搜索结果</title>
+    <link rel="icon" href="../icon/Obara_logo.jpg" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/lrtk.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.imgbox.pack.js"></script>
+
+    <style>
+        /* 自定义样式 */
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #666;
+            --border-radius: 10px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .navbar:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color) !important;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-item.active .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        .results-container {
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .results-header {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .results-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .results-info {
+            color: var(--light-text);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .filter-container {
+            background: var(--secondary-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .filter-label {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-right: 10px;
+        }
+        
+        .filter-select {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: var(--transition);
+        }
+        
+        .filter-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        .back-button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: none;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .table-container {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            overflow-x: auto;
+        }
+        
+        .table-container:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .table {
+            margin-bottom: 0;
+            min-width: 900px;
+        }
+        
+        .table thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .table th {
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            padding: 15px;
+        }
+        
+        .table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 12px;
+            transition: var(--transition);
+        }
+        
+        .table tbody tr {
+            transition: var(--transition);
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(76, 175, 80, 0.05);
+            transform: translateY(-1px);
+        }
+        
+        .preview-image {
+            transition: var(--transition);
+            cursor: pointer;
+            max-width: 60px;
+            height: auto;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .preview-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-button {
+            transition: var(--transition);
+            border: none;
+            border-radius: 5px;
+            padding: 6px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+        }
+        
+        .btn-info {
+            background-color: #17a2b8;
+        }
+        
+        .pagination {
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .page-item {
+            margin: 0 5px;
+        }
+        
+        .page-link {
+            transition: var(--transition);
+            border-radius: 5px;
+            padding: 8px 16px;
+            color: var(--text-color);
+        }
+        
+        .page-link:hover {
+            background-color: rgba(76, 175, 80, 0.1);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+        
+        .sortable:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .sort-icon {
+            margin-left: 8px;
+            font-size: 12px;
+        }
+        
+        .footer {
+            background-color: var(--secondary-color);
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer-bottom {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .container-fluid {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out 0.3s both;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .results-container {
+                margin-top: 20px;
+                margin-bottom: 40px;
+            }
+            
+            .results-header {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .results-title {
+                font-size: 1.5rem;
+            }
+            
+            .results-info {
+                font-size: 1rem;
+            }
+            
+            .filter-container {
+                padding: 15px;
+                margin-bottom: 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-label {
+                margin-bottom: 5px;
+            }
+            
+            .filter-select {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .back-button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            
+            .table-container {
+                padding: 15px;
+                margin: 0 10px;
+            }
+            
+            .table th,
+            .table td {
+                font-size: 14px;
+                padding: 8px;
+            }
+            
+            .preview-image {
+                max-width: 40px;
+            }
+            
+            .pagination {
+                margin-top: 20px;
+            }
+            
+            .page-link {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .results-title {
+                font-size: 1.3rem;
+            }
+            
+            .results-info {
+                font-size: 0.9rem;
+            }
+            
+            .table th,
+            .table td {
+                font-size: 12px;
+                padding: 6px;
+            }
+            
+            .preview-image {
+                max-width: 30px;
+            }
+            
+            .download-button {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+            
+            .page-link {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-tools"></i> 焊枪分类
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="obaragun.html" target="_self">NOC</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="obaragun-nox.html" target="_self">NOX</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">UC</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#uc" data-toggle="tab">UC</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#uch" data-toggle="tab">UCH</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#ucr" data-toggle="tab">UCR</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">UX</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#ux" data-toggle="tab">UX</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#uch" data-toggle="tab">UXH</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#ucr" data-toggle="tab">UXR</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex ms-auto" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="输入图号 | Input Drawing Code" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://www.obara.com.cn/" target="_blank">
+                        <i class="fas fa-globe"></i> 官网
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i> 更多
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-book"></i> 焊接原理
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-file-alt"></i> 技术规范
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-headset"></i> 客户服务
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-info-circle"></i> 系统说明
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-comment-alt"></i> 使用反馈
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../index.html">
+                                <i class="fas fa-sign-out-alt"></i> 退出登录
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 查询结果页 -->
+<div class="container-fluid results-container">
+    <div class="container">
+        <div class="results-header fade-in">
+            <h2 class="results-title">
+                <i class="fas fa-search-results"></i> 查询结果
+            </h2>
+            <p class="results-info">
+                找到 <strong>5</strong> 个符合条件的焊枪产品
+            </p>
+            
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label class="filter-label">排序方式：</label>
+                    <select class="filter-select" id="sortBy">
+                        <option value="throatDepth">喉深（从小到大）</option>
+                        <option value="-throatDepth">喉深（从大到小）</option>
+                        <option value="throatWidth">喉宽（从小到大）</option>
+                        <option value="-throatWidth">喉宽（从大到小）</option>
+                        <option value="pressure">加压力（从小到大）</option>
+                        <option value="-pressure">加压力（从大到小）</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">吊具类型：</label>
+                    <select class="filter-select" id="hangerFilter">
+                        <option value="all">全部</option>
+                        <option value="普通(A,G等)">普通(A,G等)</option>
+                        <option value="BB">BB</option>
+                        <option value="一方吊">一方吊</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">气缸类型：</label>
+                    <select class="filter-select" id="cylinderFilter">
+                        <option value="all">全部</option>
+                        <option value="给油">给油</option>
+                        <option value="无给油">无给油</option>
+                    </select>
+                </div>
+            </div>
+            
+            <a href="obaragun.html" class="btn back-button">
+                <i class="fas fa-arrow-left"></i> 返回修改搜索条件
+            </a>
+        </div>
+        
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="resultsTable">
+                    <!-- 查询结果头部 -->
+                    <thead>
+                        <tr>
+                            <th class="sortable" data-sort="code">图号 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="throatDepth">喉深 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="throatWidth">喉宽 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="pressure">加压力 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="workingStroke">工作行程 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="auxiliaryStroke">辅助行程 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="hanger">吊具 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="cylinder">气缸类型 <i class="fas fa-sort sort-icon"></i></th>
+                            <th class="sortable" data-sort="electrode">电极臂端部 <i class="fas fa-sort sort-icon"></i></th>
+                            <th>预览（点击大图）</th>
+                            <th>CAD下载</th>
+                            <th>STEP下载</th>
+                        </tr>
+                    </thead>
+                    <!-- 查询结果内容 -->
+                    <tbody id="resultsBody">
+                        <tr data-code="NOC-C1658" data-throat-depth="280" data-throat-width="430" data-pressure="30" data-working-stroke="150" data-auxiliary-stroke="3450" data-hanger="普通(A,G等)" data-cylinder="无给油" data-electrode="握杆">
+                            <td>NOC-C1658</td>
+                            <td>280</td>
+                            <td>430</td>
+                            <td>30</td>
+                            <td>150</td>
+                            <td>3450</td>
+                            <td>普通(A,G等)</td>
+                            <td>无给油</td>
+                            <td>握杆</td>
+                            <td><a class="bigimg" href="../img/NOC-C1658.png" target="_blank"><img src="../img/NOC-C1658.png" alt="NOC-C1658" class="preview-image"></a></td>
+                            <td><a href="../img/NOC-C1658.png" download="NOC-C1658.png"><button class="btn btn-success btn-sm download-button"><i class="fas fa-download"></i></button></a></td>
+                            <td><button class="btn btn-info btn-sm download-button"><i class="fas fa-cube"></i></button></td>
+                        </tr>
+
+                        <tr data-code="NOC-C1732" data-throat-depth="170" data-throat-width="295" data-pressure="25" data-working-stroke="100" data-auxiliary-stroke="3200" data-hanger="BB" data-cylinder="无给油" data-electrode="握杆">
+                            <td>NOC-C1732</td>
+                            <td>170</td>
+                            <td>295</td>
+                            <td>25</td>
+                            <td>100</td>
+                            <td>3200</td>
+                            <td>BB</td>
+                            <td>无给油</td>
+                            <td>握杆</td>
+                            <td><a class="bigimg" href="../img/NOC-C1732.png" target="_blank"><img src="../img/NOC-C1732.png" alt="NOC-C1732" class="preview-image"></a></td>
+                            <td><button class="btn btn-success btn-sm download-button"><i class="fas fa-download"></i></button></td>
+                            <td><button class="btn btn-info btn-sm download-button"><i class="fas fa-cube"></i></button></td>
+                        </tr>
+
+                        <tr data-code="NOC-C1733" data-throat-depth="225" data-throat-width="338" data-pressure="25" data-working-stroke="100" data-auxiliary-stroke="3200" data-hanger="BB" data-cylinder="无给油" data-electrode="握杆">
+                            <td>NOC-C1733</td>
+                            <td>225</td>
+                            <td>338</td>
+                            <td>25</td>
+                            <td>100</td>
+                            <td>3200</td>
+                            <td>BB</td>
+                            <td>无给油</td>
+                            <td>握杆</td>
+                            <td><a class="bigimg" href="../img/NOC-C1733.png" target="_blank"><img src="../img/NOC-C1733.png" alt="NOC-C1733" class="preview-image"></a></td>
+                            <td><button class="btn btn-success btn-sm download-button"><i class="fas fa-download"></i></button></td>
+                            <td><button class="btn btn-info btn-sm download-button"><i class="fas fa-cube"></i></button></td>
+                        </tr>
+
+                        <tr data-code="NOC-C1736" data-throat-depth="543" data-throat-width="200" data-pressure="25" data-working-stroke="250" data-auxiliary-stroke="3200" data-hanger="BB" data-cylinder="无给油" data-electrode="握杆">
+                            <td>NOC-C1736</td>
+                            <td>543</td>
+                            <td>200</td>
+                            <td>25</td>
+                            <td>250</td>
+                            <td>3200</td>
+                            <td>BB</td>
+                            <td>无给油</td>
+                            <td>握杆</td>
+                            <td><a class="bigimg" href="../img/NOC-C1736.png" target="_blank"><img src="../img/NOC-C1736.png" alt="NOC-C1736" class="preview-image"></a></td>
+                            <td><button class="btn btn-success btn-sm download-button"><i class="fas fa-download"></i></button></td>
+                            <td><button class="btn btn-info btn-sm download-button"><i class="fas fa-cube"></i></button></td>
+                        </tr>
+
+                        <tr data-code="NOC-C1752" data-throat-depth="320" data-throat-width="380" data-pressure="30" data-working-stroke="150" data-auxiliary-stroke="3500" data-hanger="BB" data-cylinder="无给油" data-electrode="握杆">
+                            <td>NOC-C1752</td>
+                            <td>320</td>
+                            <td>380</td>
+                            <td>30</td>
+                            <td>150</td>
+                            <td>3500</td>
+                            <td>BB</td>
+                            <td>无给油</td>
+                            <td>握杆</td>
+                            <td><a class="bigimg" href="../img/NOC-C1752.png" target="_blank"><img src="../img/NOC-C1752.png" alt="NOC-C1752" class="preview-image"></a></td>
+                            <td><button class="btn btn-success btn-sm download-button"><i class="fas fa-download"></i></button></td>
+                            <td><button class="btn btn-info btn-sm download-button"><i class="fas fa-cube"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- 分页控件 -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <div class="row footer-bottom">
+            <div class="col-md-12 text-center">
+                <p>
+                    <a href="http://www.obara.com.cn/" target="_blank" style="color: var(--light-text); text-decoration: none;">
+                        <i class="fas fa-copyright"></i> 版权所有 © 1994-2026 小原（南京）机电有限公司
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 防止XSS攻击的辅助函数
+    function sanitizeInput(input) {
+        return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+    
+    $(document).ready(function() {
+        // 图片查看器初始化
+        $("a.bigimg").imgbox({
+            'zoomOpacity': true,
+            'alignment': 'center'
+        });
+        
+        // 排序功能
+        $('#sortBy').change(function() {
+            var sortBy = $(this).val();
+            sortTable(sortBy);
+        });
+        
+        // 筛选功能
+        $('#hangerFilter, #cylinderFilter').change(function() {
+            filterTable();
+        });
+        
+        // 表头点击排序
+        $('.sortable').click(function() {
+            var sortField = $(this).data('sort');
+            var currentSort = $('#sortBy').val();
+            
+            if (currentSort === sortField) {
+                // 切换为降序
+                sortField = '-' + sortField;
+            }
+            
+            $('#sortBy').val(sortField).trigger('change');
+        });
+        
+        // 为导航栏搜索表单添加安全处理
+        $('.navbar-form').submit(function(e) {
+            var searchInput = $(this).find('input[type="text"]');
+            var searchValue = searchInput.val();
+            
+            if (searchValue) {
+                searchInput.val(sanitizeInput(searchValue));
+            }
+        });
+    });
+    
+    // 排序表格
+    function sortTable(sortBy) {
+        var tbody = $('#resultsBody');
+        var rows = tbody.find('tr').toArray();
+        
+        var reverse = false;
+        if (sortBy.startsWith('-')) {
+            reverse = true;
+            sortBy = sortBy.substring(1);
+        }
+        
+        rows.sort(function(a, b) {
+            var aVal, bVal;
+            
+            switch (sortBy) {
+                case 'throatDepth':
+                    aVal = parseInt($(a).data('throat-depth'));
+                    bVal = parseInt($(b).data('throat-depth'));
+                    break;
+                case 'throatWidth':
+                    aVal = parseInt($(a).data('throat-width'));
+                    bVal = parseInt($(b).data('throat-width'));
+                    break;
+                case 'pressure':
+                    aVal = parseInt($(a).data('pressure'));
+                    bVal = parseInt($(b).data('pressure'));
+                    break;
+                case 'workingStroke':
+                    aVal = parseInt($(a).data('working-stroke'));
+                    bVal = parseInt($(b).data('working-stroke'));
+                    break;
+                case 'auxiliaryStroke':
+                    aVal = parseInt($(a).data('auxiliary-stroke'));
+                    bVal = parseInt($(b).data('auxiliary-stroke'));
+                    break;
+                case 'code':
+                    aVal = $(a).data('code');
+                    bVal = $(b).data('code');
+                    break;
+                case 'hanger':
+                    aVal = $(a).data('hanger');
+                    bVal = $(b).data('hanger');
+                    break;
+                case 'cylinder':
+                    aVal = $(a).data('cylinder');
+                    bVal = $(b).data('cylinder');
+                    break;
+                case 'electrode':
+                    aVal = $(a).data('electrode');
+                    bVal = $(b).data('electrode');
+                    break;
+                default:
+                    return 0;
+            }
+            
+            if (aVal < bVal) {
+                return reverse ? 1 : -1;
+            }
+            if (aVal > bVal) {
+                return reverse ? -1 : 1;
+            }
+            return 0;
+        });
+        
+        $.each(rows, function(index, row) {
+            tbody.append(row);
+        });
+    }
+    
+    // 筛选表格
+    function filterTable() {
+        var hangerFilter = $('#hangerFilter').val();
+        var cylinderFilter = $('#cylinderFilter').val();
+        
+        $('#resultsBody tr').each(function() {
+            var hanger = $(this).data('hanger');
+            var cylinder = $(this).data('cylinder');
+            
+            var show = true;
+            
+            if (hangerFilter !== 'all' && hanger !== hangerFilter) {
+                show = false;
+            }
+            
+            if (cylinderFilter !== 'all' && cylinder !== cylinderFilter) {
+                show = false;
+            }
+            
+            if (show) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

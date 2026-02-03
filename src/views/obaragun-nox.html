@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小原焊枪选型数据库 - NOX系列</title>
+    <link rel="icon" href="../icon/Obara_logo.jpg" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        /* 自定义样式 */
+        .navbar {
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: #4CAF50 !important;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav > li > a {
+            transition: all 0.3s ease;
+        }
+        
+        .nav > li > a:hover {
+            background-color: rgba(76, 175, 80, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .nav > li.active > a {
+            background-color: #4CAF50 !important;
+            color: white !important;
+        }
+        
+        .search-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .search-form:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group-addon {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .form-control {
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+        
+        .btn-default {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-default:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            padding: 10px 30px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-button:active {
+            transform: translateY(0);
+        }
+        
+        .example-image {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .example-image:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+        
+        .error-message {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            color: #4CAF50;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .container-fluid {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            margin-top: 50px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer-bottom {
+            margin-top: 10px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .search-form {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            .input-group {
+                margin-bottom: 15px;
+            }
+            
+            .input-group-addon {
+                min-width: 80px;
+                font-size: 14px;
+            }
+            
+            .form-control {
+                font-size: 14px;
+                padding: 8px;
+            }
+            
+            .submit-button {
+                padding: 8px 20px;
+                font-size: 14px;
+            }
+            
+            .example-image {
+                margin-bottom: 20px;
+            }
+            
+            .navbar-brand {
+                font-size: 14px !important;
+            }
+            
+            .nav > li > a {
+                font-size: 14px !important;
+            }
+            
+            .footer-bottom {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .search-form {
+                padding: 15px;
+                margin: 0 5px;
+            }
+            
+            .input-group {
+                margin-bottom: 10px;
+            }
+            
+            .input-group-addon {
+                min-width: 70px;
+                font-size: 12px;
+            }
+            
+            .form-control {
+                font-size: 12px;
+                padding: 6px;
+            }
+            
+            .submit-button {
+                padding: 6px 16px;
+                font-size: 12px;
+            }
+            
+            .navbar-brand {
+                font-size: 12px !important;
+            }
+            
+            .nav > li > a {
+                font-size: 12px !important;
+            }
+            
+            .footer-bottom {
+                font-size: 12px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<!--首页导航栏-->
+<div class="container-fluid">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<nav class="navbar navbar-default" role="navigation" >
+				<div class="navbar-header ">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">焊枪分类</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							 <a href="obaragun.html" target="_self">NOC</a>
+						</li>
+						<li class="active">
+							 <a href="obaragun-nox.html" target="_self">NOX</a>
+						</li>
+						<li class="dropdown">
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">UC<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li>
+									 <a href="#uc" data-toggle="tab">UC</a>
+								</li>
+								<li>
+									 <a href="#uch" data-toggle="tab">UCH</a>
+								</li>
+								<li>
+									 <a href="#ucr" data-toggle="tab">UCR</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">UX<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li>
+									 <a href="#ux" data-toggle="tab">UX</a>
+								</li>
+								<li>
+									 <a href="#uch" data-toggle="tab">UXH</a>
+								</li>
+								<li>
+									 <a href="#ucr" data-toggle="tab">UXR</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="输入图号 | Input Drawing Code" size="25"/>
+						</div>
+						<button type="submit" class="btn btn-default"><img src="../icon/search.png" width="18px"></button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							 <a href="http://www.obara.com.cn/" target="_blank">访问小原（中国）官网</a>
+						</li>
+						<li class="dropdown">
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多<strong class="caret"></strong></a>
+							<ul class="dropdown-menu">
+								<li>
+									 <a href="#">焊接原理</a>
+								</li>
+								<li>
+									 <a href="#">技术规范</a>
+								</li>
+								<li>
+									 <a href="#">客户服务</a>
+								</li>
+								<li class="divider">
+								</li>
+								<li>
+									 <a href="#">系统说明</a>
+								</li>
+								<li>
+									 <a href="#">使用反馈</a>
+								</li>
+								<li>
+									 <a href="../index.html">退出登录</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</div>
+	</div>
+</div>
+<!--搜索页-->
+<div class="container-fluid fade in active">
+    <div class="row clearfix">
+        <!--左侧搜索条件-->
+        <div class="col-md-6 column">
+                <div style="padding: 10px 10px 50px 10px;">
+                    <form class="bs-example bs-example-form search-form" role="form" id="searchForm" action="obaragun-find.html" method="get">
+                        <h3 style="color: #4CAF50; margin-bottom: 20px; text-align: center;">NOX系列焊枪参数搜索</h3>
+                        
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon">喉深/mm</span>
+                            <input type="number" class="form-control" id="throatDepthMin" placeholder="最小值" size="25px" min="0">
+                            <span class="input-group-addon">~</span>
+                            <input type="number" class="form-control" id="throatDepthMax" placeholder="最大值" size="25px" min="0">
+                            <div class="error-message" id="throatDepthError">请输入有效的数值范围</div>
+                        </div>
+                        
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon">喉宽/mm</span>
+                            <input type="number" class="form-control" id="throatWidthMin" placeholder="最小值" size="25px" min="0">
+                            <span class="input-group-addon">~</span>
+                            <input type="number" class="form-control" id="throatWidthMax" placeholder="最大值" size="25px" min="0">
+                            <div class="error-message" id="throatWidthError">请输入有效的数值范围</div>
+                        </div>
+                        
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon">加压力/N</span>
+                            <input type="number" class="form-control" id="pressureMin" placeholder="最小值" size="25px" min="0">
+                            <span class="input-group-addon">~</span>
+                            <input type="number" class="form-control" id="pressureMax" placeholder="最大值" size="25px" min="0">
+                            <div class="error-message" id="pressureError">请输入有效的数值范围</div>
+                        </div>
+                        
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon">工作行程/mm</span>
+                            <input type="number" class="form-control" id="workingStrokeMin" placeholder="最小值" size="25px" min="0">
+                            <span class="input-group-addon">~</span>
+                            <input type="number" class="form-control" id="workingStrokeMax" placeholder="最大值" size="25px" min="0">
+                            <div class="error-message" id="workingStrokeError">请输入有效的数值范围</div>
+                        </div>
+                        
+                        <div class="input-group input-group-md">
+                            <span class="input-group-addon">辅助行程/mm</span>
+                            <input type="number" class="form-control" id="auxiliaryStrokeMin" placeholder="最小值" size="25px" min="0">
+                            <span class="input-group-addon">~</span>
+                            <input type="number" class="form-control" id="auxiliaryStrokeMax" placeholder="最大值" size="25px" min="0">
+                            <div class="error-message" id="auxiliaryStrokeError">请输入有效的数值范围</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default" tabindex="-1" style="color: #4CAF50; font-weight: bold;">吊具选择</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">切换下拉菜单</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="可选吊具类型">可选吊具类型</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="普通(A,G等)">普通(A,G等)</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="BB">BB</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="一方吊">一方吊</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="其它">其它</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" id="hangerType" placeholder="可选项，点击左侧下拉菜单选择">
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default" tabindex="-1" style="color: #4CAF50; font-weight: bold;">气缸给油类型</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">切换下拉菜单</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="可选给油类型">可选给油类型</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="给油">给油</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="无给油">无给油</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" id="cylinderType" placeholder="可选项，点击左侧下拉菜单选择">
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default" tabindex="-1" style="color: #4CAF50; font-weight: bold;">电极臂端部类型</button>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">切换下拉菜单</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="可选端部类型">可选端部类型</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="握杆">握杆</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-option" data-value="L型电极臂">L型电极臂</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" id="electrodeType" placeholder="可选项，点击左侧下拉菜单选择">
+                        </div>
+                        
+                        <hr />
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn submit-button">
+                                <img src="../icon/submit.png" width="20px" style="margin-right: 10px;">我已选好，确认提交
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <!--右侧搜索示例图片-->
+        <div class="col-md-6 column">
+                <div style="padding: 10px 10px 50px 10px;">
+                    <img src="../icon/example2.png" class="img-responsive example-image" alt="example">
+                    
+                    <div style="margin-top: 30px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <h4 style="color: #4CAF50;">使用说明</h4>
+                        <ul style="line-height: 1.8;">
+                            <li>请根据您的需求填写相应的参数范围</li>
+                            <li>最小值必须小于或等于最大值</li>
+                            <li>吊具类型、气缸给油类型和电极臂端部类型为可选项</li>
+                            <li>点击下拉菜单中的选项可自动填充到输入框</li>
+                            <li>填写完成后点击"我已选好，确认提交"按钮查看搜索结果</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<!--通用页脚-->
+<footer class="footer">
+    <hr/>
+    <div class="row footer-bottom">
+      <ul class="list-inline text-center">
+          <li><a href="http://www.obara.com.cn/" target="_blank"><span style="font-size: medium">版权所有 © 1994-2020 小原（南京）机电有限公司</span></a></li>
+      </ul>
+    </div>
+</footer>
+
+<script>
+    // 防止XSS攻击的辅助函数
+    function sanitizeInput(input) {
+        return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+    
+    // 表单验证
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+        var isValid = true;
+        
+        // 验证喉深
+        var throatDepthMin = document.getElementById('throatDepthMin').value;
+        var throatDepthMax = document.getElementById('throatDepthMax').value;
+        if (throatDepthMin && throatDepthMax && parseInt(throatDepthMin) > parseInt(throatDepthMax)) {
+            document.getElementById('throatDepthError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (throatDepthMin) document.getElementById('throatDepthMin').value = sanitizeInput(throatDepthMin);
+            if (throatDepthMax) document.getElementById('throatDepthMax').value = sanitizeInput(throatDepthMax);
+            document.getElementById('throatDepthError').style.display = 'none';
+        }
+        
+        // 验证喉宽
+        var throatWidthMin = document.getElementById('throatWidthMin').value;
+        var throatWidthMax = document.getElementById('throatWidthMax').value;
+        if (throatWidthMin && throatWidthMax && parseInt(throatWidthMin) > parseInt(throatWidthMax)) {
+            document.getElementById('throatWidthError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (throatWidthMin) document.getElementById('throatWidthMin').value = sanitizeInput(throatWidthMin);
+            if (throatWidthMax) document.getElementById('throatWidthMax').value = sanitizeInput(throatWidthMax);
+            document.getElementById('throatWidthError').style.display = 'none';
+        }
+        
+        // 验证加压力
+        var pressureMin = document.getElementById('pressureMin').value;
+        var pressureMax = document.getElementById('pressureMax').value;
+        if (pressureMin && pressureMax && parseInt(pressureMin) > parseInt(pressureMax)) {
+            document.getElementById('pressureError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (pressureMin) document.getElementById('pressureMin').value = sanitizeInput(pressureMin);
+            if (pressureMax) document.getElementById('pressureMax').value = sanitizeInput(pressureMax);
+            document.getElementById('pressureError').style.display = 'none';
+        }
+        
+        // 验证工作行程
+        var workingStrokeMin = document.getElementById('workingStrokeMin').value;
+        var workingStrokeMax = document.getElementById('workingStrokeMax').value;
+        if (workingStrokeMin && workingStrokeMax && parseInt(workingStrokeMin) > parseInt(workingStrokeMax)) {
+            document.getElementById('workingStrokeError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (workingStrokeMin) document.getElementById('workingStrokeMin').value = sanitizeInput(workingStrokeMin);
+            if (workingStrokeMax) document.getElementById('workingStrokeMax').value = sanitizeInput(workingStrokeMax);
+            document.getElementById('workingStrokeError').style.display = 'none';
+        }
+        
+        // 验证辅助行程
+        var auxiliaryStrokeMin = document.getElementById('auxiliaryStrokeMin').value;
+        var auxiliaryStrokeMax = document.getElementById('auxiliaryStrokeMax').value;
+        if (auxiliaryStrokeMin && auxiliaryStrokeMax && parseInt(auxiliaryStrokeMin) > parseInt(auxiliaryStrokeMax)) {
+            document.getElementById('auxiliaryStrokeError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (auxiliaryStrokeMin) document.getElementById('auxiliaryStrokeMin').value = sanitizeInput(auxiliaryStrokeMin);
+            if (auxiliaryStrokeMax) document.getElementById('auxiliaryStrokeMax').value = sanitizeInput(auxiliaryStrokeMax);
+            document.getElementById('auxiliaryStrokeError').style.display = 'none';
+        }
+        
+        // 对下拉菜单输入进行安全处理
+        var hangerType = document.getElementById('hangerType').value;
+        var cylinderType = document.getElementById('cylinderType').value;
+        var electrodeType = document.getElementById('electrodeType').value;
+        
+        if (hangerType) document.getElementById('hangerType').value = sanitizeInput(hangerType);
+        if (cylinderType) document.getElementById('cylinderType').value = sanitizeInput(cylinderType);
+        if (electrodeType) document.getElementById('electrodeType').value = sanitizeInput(electrodeType);
+        
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+    
+    // 下拉菜单选项点击事件
+    document.querySelectorAll('.dropdown-option').forEach(function(option) {
+        option.addEventListener('click', function(e) {
+            e.preventDefault();
+            var value = this.getAttribute('data-value');
+            var inputId = this.closest('.input-group').querySelector('input').id;
+            document.getElementById(inputId).value = value;
+        });
+    });
+    
+    // 输入框焦点事件
+    document.querySelectorAll('input').forEach(function(input) {
+        input.addEventListener('focus', function() {
+            var errorId = this.id + 'Error';
+            var errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

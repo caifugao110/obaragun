@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>小原焊枪选型数据库 - NOC系列</title>
+    <link rel="icon" href="../icon/Obara_logo.jpg" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* 自定义样式 */
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #666;
+            --border-radius: 10px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            background-color: white;
+        }
+        
+        .navbar:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color) !important;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-item.active .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        .search-section {
+            padding: 40px 20px;
+            background-color: var(--secondary-color);
+        }
+        
+        .search-form {
+            background: white;
+            padding: 35px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .search-form:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .form-control {
+            transition: var(--transition);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group-text {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+            border: none;
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            font-weight: bold;
+            transition: var(--transition);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .submit-button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 12px 40px;
+            border-radius: 50px;
+            transition: var(--transition);
+            width: 100%;
+            border: none;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-button:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .example-image {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .example-image:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+        
+        .info-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-top: 30px;
+            transition: var(--transition);
+        }
+        
+        .info-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-card h4 {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card ul {
+            line-height: 1.8;
+            color: var(--light-text);
+        }
+        
+        .info-card li {
+            margin-bottom: 10px;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .footer {
+            background-color: var(--secondary-color);
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer-bottom {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .container-fluid {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out 0.3s both;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .search-form {
+                padding: 25px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .input-group-text {
+                min-width: 100px;
+                font-size: 14px;
+            }
+            
+            .form-control {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .submit-button {
+                padding: 10px 30px;
+                font-size: 14px;
+            }
+            
+            .example-image {
+                margin-bottom: 30px;
+            }
+            
+            .navbar-brand {
+                font-size: 14px !important;
+            }
+            
+            .nav-link {
+                font-size: 14px !important;
+            }
+            
+            .info-card {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .search-form {
+                padding: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 12px;
+            }
+            
+            .input-group-text {
+                min-width: 80px;
+                font-size: 12px;
+            }
+            
+            .form-control {
+                font-size: 12px;
+                padding: 8px;
+            }
+            
+            .submit-button {
+                padding: 8px 20px;
+                font-size: 12px;
+            }
+            
+            .info-card {
+                padding: 15px;
+            }
+            
+            .info-card h4 {
+                font-size: 16px;
+            }
+            
+            .info-card li {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-tools"></i> 焊枪分类
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="obaragun.html" target="_self">NOC</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="obaragun-nox.html" target="_self">NOX</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">UC</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#uc" data-toggle="tab">UC</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#uch" data-toggle="tab">UCH</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#ucr" data-toggle="tab">UCR</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">UX</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#ux" data-toggle="tab">UX</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#uch" data-toggle="tab">UXH</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#ucr" data-toggle="tab">UXR</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex ms-auto" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="输入图号 | Input Drawing Code" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://www.obara.com.cn/" target="_blank">
+                        <i class="fas fa-globe"></i> 官网
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i> 更多
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-book"></i> 焊接原理
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-file-alt"></i> 技术规范
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-headset"></i> 客户服务
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-info-circle"></i> 系统说明
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-comment-alt"></i> 使用反馈
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="../index.html">
+                                <i class="fas fa-sign-out-alt"></i> 退出登录
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 搜索页面 -->
+<div class="container-fluid search-section">
+    <div class="container">
+        <div class="row">
+            <!-- 左侧搜索条件 -->
+            <div class="col-lg-6 col-md-12">
+                <form class="search-form" role="form" id="searchForm" action="obaragun-find.html" method="get">
+                    <h3 class="text-center mb-5" style="color: var(--primary-color); font-weight: bold;">
+                        <i class="fas fa-search"></i> NOC系列焊枪参数搜索
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="throatDepth" class="form-label">
+                            <i class="fas fa-ruler-combined"></i> 喉深 (mm)
+                        </label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="throatDepthMin" placeholder="最小值" min="0">
+                            <span class="input-group-text">~</span>
+                            <input type="number" class="form-control" id="throatDepthMax" placeholder="最大值" min="0">
+                        </div>
+                        <div class="error-message" id="throatDepthError">请输入有效的数值范围</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="throatWidth" class="form-label">
+                            <i class="fas fa-ruler"></i> 喉宽 (mm)
+                        </label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="throatWidthMin" placeholder="最小值" min="0">
+                            <span class="input-group-text">~</span>
+                            <input type="number" class="form-control" id="throatWidthMax" placeholder="最大值" min="0">
+                        </div>
+                        <div class="error-message" id="throatWidthError">请输入有效的数值范围</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pressure" class="form-label">
+                            <i class="fas fa-compress-alt"></i> 加压力 (N)
+                        </label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="pressureMin" placeholder="最小值" min="0">
+                            <span class="input-group-text">~</span>
+                            <input type="number" class="form-control" id="pressureMax" placeholder="最大值" min="0">
+                        </div>
+                        <div class="error-message" id="pressureError">请输入有效的数值范围</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="workingStroke" class="form-label">
+                            <i class="fas fa-exchange-alt"></i> 工作行程 (mm)
+                        </label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="workingStrokeMin" placeholder="最小值" min="0">
+                            <span class="input-group-text">~</span>
+                            <input type="number" class="form-control" id="workingStrokeMax" placeholder="最大值" min="0">
+                        </div>
+                        <div class="error-message" id="workingStrokeError">请输入有效的数值范围</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="auxiliaryStroke" class="form-label">
+                            <i class="fas fa-sync-alt"></i> 辅助行程 (mm)
+                        </label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="auxiliaryStrokeMin" placeholder="最小值" min="0">
+                            <span class="input-group-text">~</span>
+                            <input type="number" class="form-control" id="auxiliaryStrokeMax" placeholder="最大值" min="0">
+                        </div>
+                        <div class="error-message" id="auxiliaryStrokeError">请输入有效的数值范围</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hangerType" class="form-label">
+                            <i class="fas fa-hanger"></i> 吊具选择
+                        </label>
+                        <select class="form-select" id="hangerType">
+                            <option value="">可选吊具类型</option>
+                            <option value="普通(A,G等)">普通(A,G等)</option>
+                            <option value="BB">BB</option>
+                            <option value="一方吊">一方吊</option>
+                            <option value="其它">其它</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cylinderType" class="form-label">
+                            <i class="fas fa-cylinder"></i> 气缸给油类型
+                        </label>
+                        <select class="form-select" id="cylinderType">
+                            <option value="">可选给油类型</option>
+                            <option value="给油">给油</option>
+                            <option value="无给油">无给油</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="electrodeType" class="form-label">
+                            <i class="fas fa-bolt"></i> 电极臂端部类型
+                        </label>
+                        <select class="form-select" id="electrodeType">
+                            <option value="">可选端部类型</option>
+                            <option value="握杆">握杆</option>
+                            <option value="L型电极臂">L型电极臂</option>
+                        </select>
+                    </div>
+                    
+                    <hr />
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn submit-button">
+                            <i class="fas fa-check-circle"></i> 我已选好，确认提交
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 右侧搜索示例图片 -->
+            <div class="col-lg-6 col-md-12">
+                <div class="fade-in">
+                    <img src="../icon/example.png" class="img-fluid example-image" alt="焊枪示例">
+                    
+                    <div class="info-card">
+                        <h4>
+                            <i class="fas fa-info-circle"></i> 使用说明
+                        </h4>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check"></i> 请根据您的需求填写相应的参数范围</li>
+                            <li><i class="fas fa-check"></i> 最小值必须小于或等于最大值</li>
+                            <li><i class="fas fa-check"></i> 吊具类型、气缸给油类型和电极臂端部类型为可选项</li>
+                            <li><i class="fas fa-check"></i> 点击下拉菜单中的选项可自动填充到输入框</li>
+                            <li><i class="fas fa-check"></i> 填写完成后点击"我已选好，确认提交"按钮查看搜索结果</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>
+                            <i class="fas fa-lightbulb"></i> 提示信息
+                        </h4>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-info"></i> 所有参数均为参考值，实际产品可能会有细微差异</li>
+                            <li><i class="fas fa-info"></i> 如需更详细的产品信息，请联系我们的技术支持团队</li>
+                            <li><i class="fas fa-info"></i> 系统会根据您的输入自动匹配最符合条件的产品</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <div class="row footer-bottom">
+            <div class="col-md-12 text-center">
+                <p>
+                    <a href="http://www.obara.com.cn/" target="_blank" style="color: var(--light-text); text-decoration: none;">
+                        <i class="fas fa-copyright"></i> 版权所有 © 1994-2026 小原（南京）机电有限公司
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 防止XSS攻击的辅助函数
+    function sanitizeInput(input) {
+        return input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    }
+    
+    // 表单验证
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+        var isValid = true;
+        
+        // 验证喉深
+        var throatDepthMin = document.getElementById('throatDepthMin').value;
+        var throatDepthMax = document.getElementById('throatDepthMax').value;
+        if (throatDepthMin && throatDepthMax && parseInt(throatDepthMin) > parseInt(throatDepthMax)) {
+            document.getElementById('throatDepthError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (throatDepthMin) document.getElementById('throatDepthMin').value = sanitizeInput(throatDepthMin);
+            if (throatDepthMax) document.getElementById('throatDepthMax').value = sanitizeInput(throatDepthMax);
+            document.getElementById('throatDepthError').style.display = 'none';
+        }
+        
+        // 验证喉宽
+        var throatWidthMin = document.getElementById('throatWidthMin').value;
+        var throatWidthMax = document.getElementById('throatWidthMax').value;
+        if (throatWidthMin && throatWidthMax && parseInt(throatWidthMin) > parseInt(throatWidthMax)) {
+            document.getElementById('throatWidthError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (throatWidthMin) document.getElementById('throatWidthMin').value = sanitizeInput(throatWidthMin);
+            if (throatWidthMax) document.getElementById('throatWidthMax').value = sanitizeInput(throatWidthMax);
+            document.getElementById('throatWidthError').style.display = 'none';
+        }
+        
+        // 验证加压力
+        var pressureMin = document.getElementById('pressureMin').value;
+        var pressureMax = document.getElementById('pressureMax').value;
+        if (pressureMin && pressureMax && parseInt(pressureMin) > parseInt(pressureMax)) {
+            document.getElementById('pressureError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (pressureMin) document.getElementById('pressureMin').value = sanitizeInput(pressureMin);
+            if (pressureMax) document.getElementById('pressureMax').value = sanitizeInput(pressureMax);
+            document.getElementById('pressureError').style.display = 'none';
+        }
+        
+        // 验证工作行程
+        var workingStrokeMin = document.getElementById('workingStrokeMin').value;
+        var workingStrokeMax = document.getElementById('workingStrokeMax').value;
+        if (workingStrokeMin && workingStrokeMax && parseInt(workingStrokeMin) > parseInt(workingStrokeMax)) {
+            document.getElementById('workingStrokeError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (workingStrokeMin) document.getElementById('workingStrokeMin').value = sanitizeInput(workingStrokeMin);
+            if (workingStrokeMax) document.getElementById('workingStrokeMax').value = sanitizeInput(workingStrokeMax);
+            document.getElementById('workingStrokeError').style.display = 'none';
+        }
+        
+        // 验证辅助行程
+        var auxiliaryStrokeMin = document.getElementById('auxiliaryStrokeMin').value;
+        var auxiliaryStrokeMax = document.getElementById('auxiliaryStrokeMax').value;
+        if (auxiliaryStrokeMin && auxiliaryStrokeMax && parseInt(auxiliaryStrokeMin) > parseInt(auxiliaryStrokeMax)) {
+            document.getElementById('auxiliaryStrokeError').style.display = 'block';
+            isValid = false;
+        } else {
+            // 对输入进行安全处理
+            if (auxiliaryStrokeMin) document.getElementById('auxiliaryStrokeMin').value = sanitizeInput(auxiliaryStrokeMin);
+            if (auxiliaryStrokeMax) document.getElementById('auxiliaryStrokeMax').value = sanitizeInput(auxiliaryStrokeMax);
+            document.getElementById('auxiliaryStrokeError').style.display = 'none';
+        }
+        
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+    
+    // 输入框焦点事件
+    document.querySelectorAll('input').forEach(function(input) {
+        input.addEventListener('focus', function() {
+            var errorId = this.id + 'Error';
+            var errorElement = document.getElementById(errorId);
+            if (errorElement) {
+                errorElement.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
